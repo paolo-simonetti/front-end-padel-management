@@ -1,1 +1,7 @@
-<p>homepage works!</p>
+<div *ngIf="!!message" class="alert">
+    <span class="closebtn" (click)="removeMessage()">&times;</span>
+    {{message}}
+</div>
+<div id="form-container">
+    <p>What do you want to do today?</p>
+</div>

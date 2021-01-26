@@ -24,10 +24,10 @@ export class LoginComponent implements OnInit {
   onSubmit():void {
     this.authService.login(this.authorizationDTO.value).subscribe((result)=>{
       this.authService.saveToken(result.token, result.role);
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/'+localStorage.getItem('role')+'/home', {state: {message:"Welcome!"}});
     },
     (err)=>{
-      if (err.status==401) {
+      if (err.status==500) {
         this.message="Wrong credentials!"
       }
     }

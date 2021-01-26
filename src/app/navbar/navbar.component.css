@@ -25,6 +25,20 @@ ul {
     background-color: #111;
   }
   
+  li button {
+    display: block;
+    text-align: center;
+    background-color: #333;
+    border:transparent;
+    padding: 14px 16px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  li button:hover:not(.active) {
+    background-color: #111;
+  }
+
   .active {
     background-color: #4CAF50;
   }

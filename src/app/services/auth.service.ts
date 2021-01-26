@@ -49,7 +49,7 @@ export class AuthService {
   }          
   
   logout() : void {
-    this.httpClient.post<any>(environment.corsApi+environment.apiDocsBaseUrl+environment.authorizationApi+'/logout','');
+    this.httpClient.get<any>(environment.corsApi+environment.apiDocsBaseUrl+environment.authorizationApi+'/logout');
     localStorage.removeItem("token");
     localStorage.removeItem("role");
   }
