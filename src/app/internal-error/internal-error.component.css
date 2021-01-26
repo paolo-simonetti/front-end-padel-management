@@ -1,0 +1,14 @@
+.background {
+    background-image: url(../not-found/background-nf.jpg);
+    height:400px;
+    padding-left: 300px;
+    padding-right: 275px;
+    margin-top: -65px;
+    background-repeat: no-repeat;
+}
+
+h2 {
+    position: absolute;
+    margin-top: -130px;
+    margin-left: -100px;
+}

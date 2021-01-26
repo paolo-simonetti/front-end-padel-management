@@ -1,0 +1,102 @@
+<div *ngIf="message!=''" class="alert">
+    <span class="closebtn" (click)="removeMessage()">&times;</span>
+    {{message}}
+</div>
+<div id="form-container">
+  <form [formGroup]="signupDTO" (ngSubmit)="onSubmit()">
+
+    <label>Username:
+        <input type="text" formControlName="username" placeholder="Your username..." 
+            [ngStyle]="{'border-color':signupDTO.controls.username?.dirty&&
+            (signupDTO.controls.username?.errors?.required||usernameAlreadyInUse!=null)?
+            'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+        <p *ngIf="signupDTO.controls.username?.dirty&&signupDTO.controls.username?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+        <p *ngIf="signupDTO.controls.username?.dirty&&usernameAlreadyInUse!=null" class="error">
+            This username is already in use
+        </p>
+    </label>
+    <label>Password:
+        <input type="password" formControlName="password" placeholder="Your password..."
+            [ngStyle]="{'border-color':signupDTO.controls.password?.dirty&&
+            signupDTO.controls.password?.errors?.required?'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+        <p *ngIf="signupDTO.controls.password?.dirty&&signupDTO.controls.password?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+    </label>
+    <label>Birth:
+        <input type="date" formControlName="dateOfBirth" 
+            [ngStyle]="{'border-color':signupDTO.controls.dateOfBirth?.dirty&&
+            (signupDTO.controls.dateOfBirth?.errors?.required||signupDTO.controls.dateOfBirth?.errors?.dateMustBePast)?
+            'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+        <p *ngIf="signupDTO.controls.dateOfBirth?.dirty&&signupDTO.controls.dateOfBirth?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+        <p *ngIf="signupDTO.controls.dateOfBirth?.dirty&&signupDTO.controls.dateOfBirth?.errors?.dateMustBePast" class="error">
+            The date must be in the past
+        </p>
+    </label>
+    <label>Email:
+        <input type="text" formControlName="mailAddress" placeholder="Your email..."
+            [ngStyle]="{'border-color':signupDTO.controls.mailAddress?.dirty&&
+            (signupDTO.controls.mailAddress?.errors?.required||signupDTO.controls.mailAddress?.errors?.email)?
+            'rgb(238, 8, 8)':'rgb(59, 57, 57)'}" >
+        <p *ngIf="signupDTO.controls.mailAddress?.dirty&&signupDTO.controls.mailAddress?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+        <p *ngIf="signupDTO.controls.mailAddress?.dirty&&signupDTO.controls.mailAddress?.errors?.email" class="error">
+            Invalid email
+        </p> 
+    </label>
+    <label>Name:
+        <input type="text" formControlName="name" placeholder="Your name..." 
+            [ngStyle]="{'border-color':signupDTO.controls.name?.dirty&&
+            signupDTO.controls.name?.errors?.required?'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+        <p *ngIf="signupDTO.controls.name?.dirty&&signupDTO.controls.name?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+    </label>
+    <label>Surname:
+        <input type="text" formControlName="surname" placeholder="Your surname..." 
+            [ngStyle]="{'border-color':signupDTO.controls.surname?.dirty&&
+            signupDTO.controls.surname?.errors?.required?'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+        <p *ngIf="signupDTO.controls.surname?.dirty&&signupDTO.controls.surname?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+    </label>
+    <label>Mobile:
+        <input type="text" formControlName="mobile" placeholder="Your mobile number..." 
+            [ngStyle]="{'border-color':signupDTO.controls.mobile?.dirty&&
+            (signupDTO.controls.mobile?.errors?.required||signupDTO.controls.mobile?.errors?.pattern)?
+            'rgb(238, 8, 8)':'rgb(59, 57, 57)'}" >
+        <p *ngIf="signupDTO.controls.mobile?.dirty&&signupDTO.controls.mobile?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+        <p *ngIf="signupDTO.controls.mobile?.dirty&&signupDTO.controls.mobile?.errors?.pattern" class="error">
+            Invalid mobile number
+        </p>  
+    </label>
+    <label>ProPic:
+        <div class="custom-file fileInputProfileWrap">
+            <input type="file" (change)="fileChangeEvent($event)" formControlName="proPic" class="fileInputProfile">
+                <div class="img-space">
+
+                    <ng-container *ngIf="isImageSaved; else elseTemplate">
+                        <img [src]="cardImageBase64" />
+                    </ng-container>
+                    <ng-template #elseTemplate> 
+                        <img src="user-placeholder.jpg" alt="Your profile picture..." class="img-responsive">
+                    </ng-template>
+
+                </div>
+            </div>
+            <p class="error"> {{imageError}} </p> 
+    </label>
+    
+    <div *ngIf="signupDTO.valid&&usernameAlreadyInUse==null">
+        <input type="submit" value="Submit"> 
+    </div>
+
+  </form>
+</div>

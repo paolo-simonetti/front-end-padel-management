@@ -1,1 +1,30 @@
-<p>login works!</p>
+<div *ngIf="message!=''" class="alert">
+    <span class="closebtn" (click)="removeMessage()">&times;</span>
+    {{message}}
+</div> 
+<div id="form-container">
+  <form [formGroup]="authorizationDTO" (ngSubmit)="onSubmit()">
+
+    <label>Username:
+        <input type="text" formControlName="username" placeholder="Your username..." 
+            [ngStyle]="{'border-color':authorizationDTO.controls.name?.dirty&&
+            authorizationDTO.controls.username?.errors?.required?'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+        <p *ngIf="authorizationDTO.controls.username?.dirty&&authorizationDTO.controls.username?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+    </label>
+    <label>Password:
+        <input type="password" formControlName="password" placeholder="Your password..."
+            [ngStyle]="{'border-color':authorizationDTO.controls.password?.dirty&&
+            authorizationDTO.controls.password?.errors?.required?'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+        <p *ngIf="authorizationDTO.controls.password?.dirty&&authorizationDTO.controls.password?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+    </label>
+    <br/>   
+    <a href="/signup">Don't have an account? </a>
+    <br/>
+    <input type="submit" value="Submit">
+
+  </form>
+</div>
