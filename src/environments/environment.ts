@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiDocsBaseUrl:'http://localhost:8080',
-  superAdminApi:'',
+  apiDocsBaseUrl:'api',
+  superAdminApi:'/superadmin',
   adminApi:'',
   playerApi:'',
   guestApi:'',

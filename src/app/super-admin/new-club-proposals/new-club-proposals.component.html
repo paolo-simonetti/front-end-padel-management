@@ -1,1 +1,26 @@
-<p>new-club-proposals works!</p>
+<div *ngIf="!!message" class="alert">
+    <span class="closebtn" (click)="removeMessage()">&times;</span>
+    {{message}}
+</div>
+<div *ngIf="newClubProposals.length===0"><p class="spin"></p></div>
+<table>
+    <thead>
+        <tr> 
+            <th>Name</th>
+            <th>City</th>
+            <th>Proposal status</th>
+            <th>Logo</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let newClubProposal of newClubProposals"> 
+        <td> {{newClubProposal.name}} </td>
+        <td> {{newClubProposal.city}} </td>
+        <td> {{newClubProposal.proposalStatus}}</td>
+        <td> {{newClubProposal.logo}} </td>
+        <td *ngIf="newClubProposal.proposalStatus=='pending'"> 
+            <button (click)="approveProposal(newClubProposal)" class="buttonNewClubProposal" > Approve </button>
+            <button (click)="rejectProposal(newClubProposal)" class="buttonNewClubProposal" > Reject </button>
+        </td>
+    </tbody>
+</table>
