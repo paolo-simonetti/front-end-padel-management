@@ -3,5 +3,8 @@
     {{message}}
 </div>
 <div id="form-container">
-    <p>What do you want to do today?</p>
+    <h3>What do you want to do today?</h3>
+    <div *ngIf="role=='superAdmin'">
+        <a [routerLink]="['/superAdmin/newClubProposals']"> See all the new club proposals</a>
+    </div>
 </div>

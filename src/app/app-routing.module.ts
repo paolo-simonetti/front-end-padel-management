@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
-import { HomepageComponent } from './homepage/homepage.component';
+import { RoleGuard } from './guards/role.guard';
 import { InternalErrorComponent } from './internal-error/internal-error.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -11,13 +11,13 @@ const routes: Routes = [
   {path:'internal-error', canActivate:[AuthGuard], component:InternalErrorComponent},
   {path:'login', component:LoginComponent}, 
   {path:'signup', component:SignUpComponent},
-  {path: 'superAdmin', canActivate:[AuthGuard], loadChildren: () => import('./super-admin/super-admin.module')
+  {path: 'superAdmin', canActivate:[AuthGuard, RoleGuard], loadChildren: () => import('./super-admin/super-admin.module')
     .then(m => m.SuperAdminModule) },
-  {path: 'guest', canActivate:[AuthGuard], loadChildren: () => import('./guest/guest.module')
+  {path: 'guest', canActivate:[AuthGuard, RoleGuard], loadChildren: () => import('./guest/guest.module')
     .then(m => m.GuestModule) },
-  {path: 'admin', canActivate:[AuthGuard], loadChildren: () => import('./admin/admin.module')
+  {path: 'admin', canActivate:[AuthGuard, RoleGuard], loadChildren: () => import('./admin/admin.module')
     .then(m => m.AdminModule) },
-    {path: 'player', canActivate:[AuthGuard], loadChildren: () => import('./player/player.module')
+    {path: 'player', canActivate:[AuthGuard, RoleGuard], loadChildren: () => import('./player/player.module')
     .then(m => m.PlayerModule) },
   {path:'**', canActivate:[AuthGuard], component:NotFoundComponent}
 ];

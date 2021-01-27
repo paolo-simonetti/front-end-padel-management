@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from '../guards/auth.guard';
 import { HomepageComponent } from '../homepage/homepage.component';
+import { NewClubProposalsComponent } from './new-club-proposals/new-club-proposals.component';
 
 const routes: Routes = [
-  {path:'home', canActivate:[AuthGuard], component:HomepageComponent}
+  {path:'home', component:HomepageComponent},
+  {path:'newClubProposals', component:NewClubProposalsComponent}
 ];
 
 @NgModule({

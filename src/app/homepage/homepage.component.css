@@ -21,7 +21,6 @@
   }
 
   div {
-    margin-top:-50px;
     margin-bottom:100px;
    }
 
@@ -37,4 +36,14 @@
     overflow-y: scroll;
     overflow-x: scroll;
 
+  }
+
+  a {
+    display: block;
+    color: white;
+    background-color: teal;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    margin-top: 20px;
   }

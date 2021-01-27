@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
   message:any='';
+  role:string=localStorage.getItem('role');
   constructor() { }
 
   removeMessage():void {

@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PageBodyComponent } from './page-body/page-body.component';
@@ -14,6 +13,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -29,10 +30,11 @@ import { SignUpComponent } from './sign-up/sign-up.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule, 
+    AppRoutingModule,
+    RouterModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
