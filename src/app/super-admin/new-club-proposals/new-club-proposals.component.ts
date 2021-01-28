@@ -13,17 +13,23 @@ export class NewClubProposalsComponent implements OnInit {
   message:string='';
 
   approveProposal(newClubProposal:NewClubProposal) {
-    this.newClubProposalService.approve(newClubProposal).subscribe((result)=>this.message=result.toString());
-    this.newClubProposalService.findAllPending().subscribe((result)=>{
-      this.newClubProposals=result;
+    this.newClubProposalService.approve(newClubProposal).subscribe((result)=>{
+      this.message=result.toString();
+      this.newClubProposalService.findAllPending().subscribe((result1)=>{
+        this.newClubProposals=result1.message;
+      });
     });
+    
   }
 
   rejectProposal(newClubProposal:NewClubProposal) {
-    this.newClubProposalService.reject(newClubProposal).subscribe((result)=>this.message=result.toString());
-    this.newClubProposalService.findAllPending().subscribe((result)=>{
-      this.newClubProposals=result;
-    });    
+    this.newClubProposalService.reject(newClubProposal).subscribe((result)=>{
+      this.message=result.toString();
+      this.newClubProposalService.findAllPending().subscribe((result1)=>{
+        this.newClubProposals=result1.message;
+      });    
+  
+    });
   }
 
   removeMessage():void {
@@ -34,7 +40,6 @@ export class NewClubProposalsComponent implements OnInit {
 
   ngOnInit(): void {
     this.newClubProposalService.findAllPending().subscribe((result)=>{
-      console.log(result)
       this.newClubProposals=result;
     });
   }

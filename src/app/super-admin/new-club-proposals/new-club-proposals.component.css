@@ -63,3 +63,27 @@
   div {
     margin-bottom:100px;
    }
+
+   #newClubProposals {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #newClubProposals td, #newClubProposals th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    background-color: #fdfafa;
+  }
+  
+  #newClubProposals tr:nth-child(even){background-color: #ebd7d7;}
+  
+  #newClubProposals tr:hover {background-color: #ddd;}
+  
+  #newClubProposals th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+  }
