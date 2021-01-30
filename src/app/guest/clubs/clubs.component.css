@@ -1,4 +1,4 @@
-.buttonNewClubProposal {
+.buttonClub {
     background-color: #e20808;
     border: none;
     color: white;
@@ -64,52 +64,26 @@
     margin-bottom:100px;
    }
 
-   #newClubProposals {
+   #Clubs {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
-    margin-top: -50px;
   }
   
-  #newClubProposals td, #newClubProposals th {
+  #Clubs td, #Clubs th {
     border: 1px solid #ddd;
     padding: 8px;
     background-color: #fdfafa;
   }
   
-  #newClubProposals tr:nth-child(even){background-color: #ebd7d7;}
+  #Clubs tr:nth-child(even){background-color: #ebd7d7;}
   
-  #newClubProposals tr:hover {background-color: #ddd;}
+  #Clubs tr:hover {background-color: #ddd;}
   
-  #newClubProposals th {
+  #Clubs th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
     background-color: #4CAF50;
     color: white;
   }
-
-  .image-wrap {
-    padding: 10px;
-    border: solid 1px #e0e0e0;
-    display: inline-block;
-}
-
-.img-space {
-    border: dashed 1px #d3d3d3;
-    border-radius: 8px;
-    background-color: #f2f2f2;
-    height: auto;
-    width: 100%;
-    padding: 10px;
-    min-height:175px;
-    margin-top: 60px;
-}
-
-.img-space img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    cursor: pointer;
-}

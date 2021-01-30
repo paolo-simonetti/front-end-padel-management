@@ -10,13 +10,13 @@ import { LoginDTO, SignupDTO } from '../messages/AuthorizationDTO';
 export class AuthService {
 
   login(loginDTO:LoginDTO):Observable<any> {
-    return this.httpClient.post<any>(environment.corsApi+environment.apiDocsBaseUrl+environment.authorizationApi+'/login', 
+    return this.httpClient.post<any>(environment.apiDocsBaseUrl+environment.authorizationApi+'/login', 
       {"username":loginDTO.username, "password":loginDTO.password})
              
   }
 
   signup(signupDTO:SignupDTO):Observable<any> {
-    return this.httpClient.post<any>(environment.corsApi+environment.apiDocsBaseUrl+environment.authorizationApi+'/signup', 
+    return this.httpClient.post<any>(environment.apiDocsBaseUrl+environment.authorizationApi+'/signup', 
       {
         "username":signupDTO.username,
         "password":signupDTO.password, 
@@ -25,7 +25,6 @@ export class AuthService {
         "name":signupDTO.name,
         "surname":signupDTO.surname,
         "mobile":signupDTO.mobile,
-        "proPicName":signupDTO.proPicName,
         "proPic":signupDTO.proPic
       })
       
@@ -35,7 +34,7 @@ export class AuthService {
     const httpOptions = {
       headers: new HttpHeaders({ "Content-Type": "application/json"})
     };    
-    let result:any=this.httpClient.post<any>(environment.corsApi+environment.apiDocsBaseUrl+environment.authorizationApi+
+    let result:any=this.httpClient.post<any>(environment.apiDocsBaseUrl+environment.authorizationApi+
       '/findAllUsernames', 
     {
       "request":username
@@ -49,7 +48,7 @@ export class AuthService {
   }          
   
   logout() : void {
-    this.httpClient.get<any>(environment.corsApi+environment.apiDocsBaseUrl+environment.authorizationApi+'/logout');
+    this.httpClient.get<any>(environment.apiDocsBaseUrl+environment.authorizationApi+'/logout');
     localStorage.removeItem("token");
     localStorage.removeItem("role");
   }

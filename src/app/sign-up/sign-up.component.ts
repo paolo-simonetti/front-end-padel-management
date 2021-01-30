@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import * as moment from 'moment';
 import * as _ from 'lodash';
+import { SignupDTO } from '../messages/AuthorizationDTO';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,6 +17,7 @@ export class SignUpComponent implements OnInit {
   imageError: string='';
   isImageSaved: boolean=false;
   cardImageBase64: string=null;
+  signupDTOForService:SignupDTO=new SignupDTO();
 
   dateMustBePast:ValidatorFn=control=>{
     const millisecondsInput:number=Date.parse(control!.value.toString());
@@ -47,7 +49,7 @@ export class SignUpComponent implements OnInit {
     name:new FormControl('', Validators.required),
     surname:new FormControl('', Validators.required),
     mobile:new FormControl('', [Validators.required, Validators.pattern('(^[\+]393|^[\+]39 3|^[3])[0-9]{9}')]),
-    proPic:new FormControl(this.cardImageBase64)
+    proPic:new FormControl('')
   })
   
   removeMessage():void {
@@ -93,6 +95,7 @@ export class SignUpComponent implements OnInit {
                 } else {
                     const imgBase64Path = e.target.result;
                     this.cardImageBase64 = imgBase64Path;
+                    console.log(this.cardImageBase64);
                     this.isImageSaved = true;
                     // this.previewImagePath = imgBase64Path;
                 }
@@ -108,12 +111,24 @@ export class SignUpComponent implements OnInit {
     this.isImageSaved = false;
   }
 
-  onSubmit():void {
-    this.authService.signup(this.signupDTO.value).subscribe((result)=>{
+  copyFormToDto (form:FormGroup) {
+    this.signupDTOForService.name=form.controls.name.value;
+    this.signupDTOForService.surname=form.controls.surname.value;
+    this.signupDTOForService.username=form.controls.username.value;
+    this.signupDTOForService.password=form.controls.password.value;
+    this.signupDTOForService.dateOfBirth=form.controls.dateOfBirth.value;
+    this.signupDTOForService.mobile=form.controls.mobile.value;
+    this.signupDTOForService.mailAddress=form.controls.mailAddress.value;
+    this.signupDTOForService.proPic=this.cardImageBase64;
+    this.authService.signup(this.signupDTOForService).subscribe((result)=>{
       this.router.navigateByUrl('/login', {state:{data:result.message}});
     }, (err)=> {
       this.message="Invalid data! Try changing the username";
     })
+  }
+
+  onSubmit():void {
+    this.copyFormToDto(this.signupDTO);
   }
 
   constructor(private router:Router, private authService:AuthService) { }

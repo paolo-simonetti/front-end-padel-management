@@ -17,7 +17,7 @@
         <td> {{newClubProposal.name}} </td>
         <td> {{newClubProposal.city}} </td>
         <td> {{newClubProposal.proposalStatus}}</td>
-        <td> {{newClubProposal.logo}} </td>
+        <td class="img-space"> <img [src]="newClubProposal.logo" /> </td>
         <td *ngIf="newClubProposal.proposalStatus=='pending'"> 
             <button (click)="approveProposal(newClubProposal)" class="buttonNewClubProposal" > Approve </button>
             <button (click)="rejectProposal(newClubProposal)" class="buttonNewClubProposal" > Reject </button>

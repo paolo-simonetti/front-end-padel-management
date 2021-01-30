@@ -8,7 +8,7 @@ export const environment = {
   superAdminApi:'/superadmin',
   adminApi:'',
   playerApi:'',
-  guestApi:'',
+  guestApi:'/guest',
   corsApi:'',
   authorizationApi:'/authorization'
 };

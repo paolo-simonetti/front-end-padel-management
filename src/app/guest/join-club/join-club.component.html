@@ -1,0 +1,21 @@
+<div *ngIf="!!message" class="alert">
+    <span class="closebtn" (click)="removeMessage()">&times;</span>
+    {{message}}
+</div>
+<div id="form-container">
+  <form (ngSubmit)="onSubmit()">
+
+    <label>Club's name: {{club.name}}</label>
+    <label>Club's city: {{club.city}}</label>
+    <label>Club's logo: {{club.logo}}</label>
+    <label>Insert your level as a player:
+        <select required [(ngModel)]="userLevel" name="userLevel">
+            <option disabled value=undefined> Select your level </option>
+            <option *ngFor="let level of levels" [value]="level"> {{level}}</option>
+        </select>
+    </label>
+    
+    <input type="submit" value="Submit"> 
+
+  </form>
+</div>

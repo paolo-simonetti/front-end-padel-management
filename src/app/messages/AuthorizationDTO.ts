@@ -10,6 +10,5 @@ export class SignupDTO {
     name:string;
     surname:string;
     mobile:string;
-    proPicName:string;
-    proPic:any;
+    proPic:string;
 }

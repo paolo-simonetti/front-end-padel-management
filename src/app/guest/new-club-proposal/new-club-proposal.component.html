@@ -1,0 +1,47 @@
+<div *ngIf="message!=''" class="alert">
+    <span class="closebtn" (click)="removeMessage()">&times;</span>
+    {{message}}
+</div>
+<div id="form-container">
+  <form [formGroup]="insertNewClubProposalDTO" (ngSubmit)="onSubmit()">
+
+    <label>Name:
+        <input type="text" formControlName="name" placeholder="The club's name..." 
+            [ngStyle]="{'border-color':insertNewClubProposalDTO.controls.name?.dirty&&
+            insertNewClubProposalDTO.controls.name?.errors?.required?
+            'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+        <p *ngIf="insertNewClubProposalDTO.controls.name?.dirty&&insertNewClubProposalDTO.controls.name?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+    </label>
+    <label>City:
+        <input type="text" formControlName="city" placeholder="The club's city..."
+            [ngStyle]="{'border-color':insertNewClubProposalDTO.controls.password?.dirty&&
+            insertNewClubProposalDTO.controls.city?.errors?.required?'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+        <p *ngIf="insertNewClubProposalDTO.controls.city?.dirty&&insertNewClubProposalDTO.controls.city?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+    </label>
+    <label>Logo:
+        <div class="custom-file fileInputProfileWrap">
+            <input type="file" (change)="fileChangeEvent($event)" formControlName="logo" class="fileInputProfile">
+                <div class="img-space">
+
+                    <ng-container *ngIf="isImageSaved; else elseTemplate">
+                        <img [src]="cardImageBase64" />
+                    </ng-container>
+                    <ng-template #elseTemplate> 
+                        <img src="user-placeholder.jpg" alt="The club's logo..." class="img-responsive">
+                    </ng-template>
+
+                </div>
+            </div>
+            <p class="error"> {{imageError}} </p> 
+    </label>
+    {{insertNewClubProposalDTO.valid}}
+    <div *ngIf="insertNewClubProposalDTO.valid">
+        <input type="submit" value="Submit"> 
+    </div>
+
+  </form>
+</div>

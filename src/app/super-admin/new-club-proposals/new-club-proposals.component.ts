@@ -24,7 +24,7 @@ export class NewClubProposalsComponent implements OnInit {
 
   rejectProposal(newClubProposal:NewClubProposal) {
     this.newClubProposalService.reject(newClubProposal).subscribe((result)=>{
-      this.message=result.toString();
+      this.message=result.message();
       this.newClubProposalService.findAllPending().subscribe((result1)=>{
         this.newClubProposals=result1.message;
       });    

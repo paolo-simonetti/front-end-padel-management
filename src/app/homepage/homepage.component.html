@@ -7,4 +7,8 @@
     <div *ngIf="role=='superAdmin'">
         <a [routerLink]="['/superAdmin/newClubProposals']"> See all the new club proposals</a>
     </div>
+    <div *ngIf="role=='guest'">
+        <a [routerLink]="['/guest/clubs']"> See all the clubs</a>
+        <a [routerLink]="['/guest/new-club-proposal']"> Insert new club proposal</a>        
+    </div>
 </div>
