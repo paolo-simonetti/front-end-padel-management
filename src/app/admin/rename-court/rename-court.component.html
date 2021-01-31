@@ -1,0 +1,10 @@
+<div *ngIf="!!message" class="alert">
+    <span class="closebtn" (click)="removeMessage()">&times;</span>
+    {{message}}
+</div>
+<div class="container">
+    <label>Choose the new name for the court:
+        <input type="text" [(ngModel)]="newName" required>
+    </label>
+    <div *ngIf="!!newName"> <button (click)="renameCourt()"> Rename </button></div>
+</div>

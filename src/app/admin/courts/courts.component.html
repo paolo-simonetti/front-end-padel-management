@@ -1,0 +1,23 @@
+<div *ngIf="!!message" class="alert">
+    <span class="closebtn" (click)="removeMessage()">&times;</span>
+    {{message}}
+</div>
+<div *ngIf="courts.length===0"><p class="spin"></p></div>
+<table id="courts">
+    <thead>
+        <tr> 
+            <th>Name</th>
+            <th>May be reserved</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let court of courts"> 
+        <td> {{court.name}} </td>
+        <td> {{court.mayBeReserved}} </td>
+        <td>
+            <button [routerLink]="['/admin/rename-court',court.id]" class="buttonCourt" > Rename court </button>
+            <button *ngIf="court.mayBeReserved=='true'" (click)="dismiss(court.id)" class="buttonCourt" > Dismiss </button>
+            <button *ngIf="court.mayBeReserved=='false'" (click)="restore(court.id)" class="buttonCourt" > Restore </button>
+        </td>
+    </tbody>
+</table>

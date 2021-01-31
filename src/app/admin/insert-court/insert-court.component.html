@@ -1,0 +1,10 @@
+<div *ngIf="!!message" class="alert">
+    <span class="closebtn" (click)="removeMessage()">&times;</span>
+    {{message}}
+</div>
+<div class="container">
+    <label>Choose the name for the new court:
+        <input type="text" [(ngModel)]="name" required>
+    </label>
+    <div *ngIf="!!name"> <button (click)="insertCourt()"> Create court </button></div>
+</div>

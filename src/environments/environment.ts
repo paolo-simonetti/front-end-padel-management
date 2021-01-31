@@ -6,9 +6,10 @@ export const environment = {
   production: false,
   apiDocsBaseUrl:'api',
   superAdminApi:'/superadmin',
-  adminApi:'',
-  playerApi:'',
+  adminApi:'/admin',
+  playerApi:'/player',
   guestApi:'/guest',
+  courtsPackage:'/courts',
   corsApi:'',
   authorizationApi:'/authorization'
 };

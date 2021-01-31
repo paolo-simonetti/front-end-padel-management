@@ -11,4 +11,9 @@
         <a [routerLink]="['/guest/clubs']"> See all the clubs</a>
         <a [routerLink]="['/guest/new-club-proposal']"> Insert new club proposal</a>        
     </div>
+    <div *ngIf="role=='admin'">
+        <a [routerLink]="['/admin/matches-by-date']"> See all the matches by date </a>
+        <a [routerLink]="['/admin/courts']"> See all the courts</a> 
+        <a [routerLink]="['/admin/insert-court']"> Insert new court</a>
+    </div>
 </div>

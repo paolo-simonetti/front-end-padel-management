@@ -1,0 +1,29 @@
+<div *ngIf="!!message" class="alert">
+    <span class="closebtn" (click)="removeMessage()">&times;</span>
+    {{message}}
+</div>
+<div class="container">
+    <label>Select the date:
+        <input type="date" [(ngModel)]="date" required>
+    </label>
+    <div *ngIf="!!date"> <button (click)="seeCourts($event)"> Confirm </button></div>
+</div>
+<div *ngIf="courts.length===0"><p class="spin"></p></div>
+<div *ngIf="courts.length>0">
+    <table id="courts">
+        <thead>
+            <tr *ngFor="let court of courts"> 
+                <th>{{court.courtName}}</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let slot of slots">  
+            <tr *ngFor="let court of courts">
+                <td [ngStyle]="{'background-colour':isThereAMatch(court,slot) && !isThereAPayedMatch(court,slot)?'red':'grey'}"
+                [ngStyle]="{'background-colour':isThereAMatch(court,slot) && isThereAPayedMatch(court,slot)?'green':'grey'}"> 
+                    {{slot.hour}}:{{slot.minute}}-{{slot.hour}}:{{(slot.minute+30)%60}} <br/>
+                    Creator's username: {{getMatchCreatorUsernameFromCourtAndSlot(court,slot)}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
