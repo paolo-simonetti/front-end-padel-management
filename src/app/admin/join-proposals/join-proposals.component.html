@@ -1,0 +1,22 @@
+<div *ngIf="!!message" class="alert">
+    <span class="closebtn" (click)="removeMessage()">&times;</span>
+    {{message}}
+</div>
+<div *ngIf="joinProposals.length===0"><p class="spin"></p></div>
+<table id="joinProposals">
+    <thead>
+        <tr> 
+            <th>User's level</th>
+            <th>Proposal status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let joinProposal of joinProposals"> 
+        <td> {{joinProposal.userLevel}} </td>
+        <td> {{joinProposal.proposalStatus}}</td>
+        <td *ngIf="joinProposal.proposalStatus=='pending'"> 
+            <button (click)="approveProposal(joinProposal)" class="buttonJoinProposal" > Approve </button>
+            <button (click)="rejectProposal(joinProposal)" class="buttonJoinProposal" > Reject </button>
+        </td>
+    </tbody>
+</table>

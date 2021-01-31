@@ -10,6 +10,8 @@ export const environment = {
   playerApi:'/player',
   guestApi:'/guest',
   courtsPackage:'/courts',
+  joinProposalPackage:'/joinproposals',
+  noticePackage:'/notices',
   corsApi:'',
   authorizationApi:'/authorization'
 };

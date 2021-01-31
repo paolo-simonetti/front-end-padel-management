@@ -1,4 +1,4 @@
-.buttonCourt {
+.buttonNotice {
     background-color: #e20808;
     border: none;
     color: white;
@@ -8,9 +8,10 @@
     display: inline-block;
     border-radius: 4px;
     font-size: 15px;
+    margin-bottom: 5px;
 }
 
-.buttonCourt:hover {
+.buttonNotice:hover {
     background-color: rgb(252, 193, 193);
 }
 
@@ -43,6 +44,7 @@
     padding: 20px;
     background-color: #36aef4;
     color: white;
+    margin-bottom: 30px;
   }
   
   .closebtn {
@@ -60,27 +62,30 @@
     color: black;
   }
 
-  div {
+  #notices-container {
     margin-bottom:20px;
+    overflow-y: scroll;
+    margin-top: 10px;
+    max-height: 280px;
    }
 
-   #courts {
+   #notices {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
   }
   
-  #courts td, #courts th {
+  #notices td, #notices th {
     border: 1px solid #ddd;
     padding: 8px;
     background-color: #fdfafa;
   }
   
-  #courts tr:nth-child(even){background-color: #ebd7d7;}
+  #notices tr:nth-child(even){background-color: #ebd7d7;}
   
-  #courts tr:hover {background-color: #ddd;}
+  #notices tr:hover {background-color: #ddd;}
   
-  #courts th {
+  #notices th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;

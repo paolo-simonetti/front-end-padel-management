@@ -1,0 +1,10 @@
+<div *ngIf="!!message" class="alert">
+    <span class="closebtn" (click)="removeMessage()">&times;</span>
+    {{message}}
+</div>
+<div class="container">
+    <label>Type the text of the notice:
+        <input type="text" [(ngModel)]="newMessage" required>
+    </label>
+    <div *ngIf="!!newMessage"> <button (click)="insertMessage(newMessage)"> Insert </button></div>
+</div>
