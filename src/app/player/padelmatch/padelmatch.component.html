@@ -1,0 +1,27 @@
+<div *ngIf="!!message" class="alert">
+    <span class="closebtn" (click)="removeMessage()">&times;</span>
+    {{message}}
+</div>
+<div *ngIf="matches.length===0"><p class="spin"></p></div>
+<table id="matches">
+    <thead>
+        <tr> 
+            <th>Date</th>
+            <th>Was payed</th>
+            <th>Missing players</th>
+            <th>Hour</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let match of matches"> 
+        <td> {{match.date}} </td>
+        <td> {{match.payed}} </td>
+        <td> {{match.missingPlayers}}</td>
+        <td> {{match.hour}}:{{match.minute}}-{{match.hourEnd}}:{{match.minuteEnd}}</td>
+        <td>
+            <button *ngIf="moreThanAnHourAndHalfMissing(match)" (click)="deletePadelMatch(match)" class="buttonCourt" > 
+                Delete match
+            </button>
+        </td>
+    </tbody>
+</table>

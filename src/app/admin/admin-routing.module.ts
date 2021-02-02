@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomepageComponent } from '../homepage/homepage.component';
 import { CourtsComponent } from './courts/courts.component';
 import { InsertCourtComponent } from './insert-court/insert-court.component';
+import { JoinProposalsComponent } from './join-proposals/join-proposals.component';
 import { MatchesByDateComponent } from './matches-by-date/matches-by-date.component';
 import { NoticeInsertComponent } from './notice-insert/notice-insert.component';
 import { NoticeUpdateComponent } from './notice-update/notice-update.component';
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path:'rename-court/:courtId', component:RenameCourtComponent},
   {path:'update-notice/:noticeId', component:NoticeUpdateComponent},
   {path:'notices', component:NoticesComponent},
-  {path:'insert-notice', component:NoticeInsertComponent}
+  {path:'insert-notice', component:NoticeInsertComponent},
+  {path:'join-proposals', component:JoinProposalsComponent}
 ];
 
 @NgModule({

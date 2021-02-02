@@ -23,7 +23,7 @@ export class JoinClubComponent implements OnInit {
 
   onSubmit() {
     this.clubService.joinClub(this.club.id,this.userLevel).subscribe((result)=>{
-      this.router.navigateByUrl('guest/home', {state:{data:result.message}});
+      this.router.navigateByUrl('/guest/home', {state:{message:result.message}});
     }); 
   }
 
@@ -31,7 +31,7 @@ export class JoinClubComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.clubService.findById(params.id).subscribe((result)=>this.club=result);
+      this.clubService.findById(params.clubId).subscribe((result)=>this.club=result);
     });
   }
 

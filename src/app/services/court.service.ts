@@ -45,5 +45,10 @@ export class CourtService {
     });
   }
 
+  verifyAvailability(dto:any):Observable<any> {
+    return this.httpClient.post<any>(environment.apiDocsBaseUrl+environment.playerApi+environment.padelMatchPackage+
+      '/verify-availability',dto);
+  } 
+
   constructor(private httpClient:HttpClient) { }
 }

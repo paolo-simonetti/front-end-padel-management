@@ -6,8 +6,12 @@
   <form (ngSubmit)="onSubmit()">
 
     <label>Club's name: {{club.name}}</label>
+    <br/>
     <label>Club's city: {{club.city}}</label>
-    <label>Club's logo: {{club.logo}}</label>
+    <br/>
+    <br/>
+    <label class="img-space">Club's logo <img [src]="club.logo" /> </label>
+    <br/>
     <label>Insert your level as a player:
         <select required [(ngModel)]="userLevel" name="userLevel">
             <option disabled value=undefined> Select your level </option>

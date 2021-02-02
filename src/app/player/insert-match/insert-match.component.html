@@ -1,0 +1,27 @@
+<div *ngIf="message!=''" class="alert">
+    <span class="closebtn" (click)="removeMessage()">&times;</span>
+    {{message}}
+</div>
+<div id="form-container">
+  <form [formGroup]="insertMatchDTO" (ngSubmit)="onSubmit()">
+
+    <label>How many players are missing?
+        <select required formControlName="missingPlayers" [ngStyle]="{'border-color':insertMatchDTO.controls.missingPlayers?.dirty&&
+        (insertMatchDTO.controls.missingPlayers?.errors?.required||insertMatchDTO.controls.missingPlayers?.errors?.inPlayers)?
+        'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+            <option disabled value=undefined> Missing players </option>
+            <option *ngFor="let mp of missingPlayers" [ngValue]="mp"> {{mp}} </option>
+        </select>
+        <p *ngIf="insertMatchDTO.controls.missingPlayers?.dirty&&insertMatchDTO.controls.missingPlayers?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+        <p *ngIf="insertMatchDTO.controls.missingPlayers?.dirty&&insertMatchDTO.controls.missingPlayers?.errors?.inPlayers" class="error">
+            Invalid number of missing players
+        </p>
+    </label>
+    <div *ngIf="insertMatchDTO.valid">
+        <input type="submit" value="Submit"> 
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,29 @@
+<div *ngIf="!!message" class="alert">
+    <span class="closebtn" (click)="removeMessage()">&times;</span>
+    {{message}}
+</div>
+<div class="container">
+    <label>Select the date:
+        <input type="date" [(ngModel)]="date" required>
+    </label>
+    <div *ngIf="!!date"> <button (click)="seeMatches($event)"> Confirm </button></div>
+    <div *ngIf="matches.length===0"><p class="spin"></p></div>
+<div *ngIf="matches.length>0">
+    <table id="matches">
+        <thead> 
+            <th>Date</th>
+            <th>Payed</th>
+            <th>Missing players</th>
+            <th>Starts</th>
+            <th>Ends</th>
+        </thead>
+        <tbody *ngFor="let match of matches">  
+            <td>{{match.date}}</td>
+            <td>{{match.payed}}</td>
+            <td>{{match.missingPlayers}}</td>
+            <td>{{match.hour}}:{{match.minute}}</td>
+            <td>{{match.hourEnd}}:{{match.minuteEnd}}</td>            
+        </tbody>
+    </table>
+</div>
+</div>

@@ -15,7 +15,7 @@ export class JoinProposalsComponent implements OnInit {
     this.joinProposalService.approve(joinProposal).subscribe((result)=>{
       this.message=result.toString();
       this.joinProposalService.findAllPending().subscribe((result1)=>{
-        this.joinProposals=result1.message;
+        this.joinProposals=result1;
       });
     });
     
@@ -25,7 +25,7 @@ export class JoinProposalsComponent implements OnInit {
     this.joinProposalService.reject(joinProposal).subscribe((result)=>{
       this.message=result.message();
       this.joinProposalService.findAllPending().subscribe((result1)=>{
-        this.joinProposals=result1.message;
+        this.joinProposals=result1;
       });    
   
     });

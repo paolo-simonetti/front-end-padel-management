@@ -17,6 +17,11 @@
         <a [routerLink]="['/admin/insert-court']"> Insert new court</a>
         <a [routerLink]="['/admin/notices']"> See all the notices</a>
         <a [routerLink]="['/admin/insert-notice']"> Insert new notice</a>
-
+        <a [routerLink]="['/admin/join-proposals']"> See the join proposals to your club</a>
+    </div>
+    <div *ngIf="role=='player'">
+        <a [routerLink]="['/player/verify-availability']"> Verify the availability of the courts </a>
+        <a [routerLink]="['/player/find-match-by-date']"> Find matches by date </a>
+        <a [routerLink]="['/player/padel-match']"> Find all the matches </a>
     </div>
 </div>

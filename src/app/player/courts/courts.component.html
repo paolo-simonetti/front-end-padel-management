@@ -1,0 +1,26 @@
+<div *ngIf="!!message" class="alert">
+    <span class="closebtn" (click)="removeMessage()">&times;</span>
+    {{message}}
+</div>
+<div *ngIf="courts.length===0"><p class="spin"></p></div>
+<table id="courts">
+    <thead>
+        <tr> 
+            <th>Name</th>
+            <th>May be reserved</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let court of courts"> 
+        <td> {{court.name}} </td>
+        <td> {{court.mayBeReserved}} </td>
+        <td>
+            <button *ngIf="court.mayBeReserved=='true'" [routerLink]="goToInsertMatch(court.id)" class="buttonCourt" > 
+                Choose for a new match 
+            </button>
+            <button *ngIf="court.mayBeReserved=='true'" [routerLink]="['/player/update-match',court.id]" class="buttonCourt" > 
+                Choose for an existing match 
+            </button>
+        </td>
+    </tbody>
+</table>

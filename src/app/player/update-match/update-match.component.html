@@ -1,0 +1,28 @@
+<div *ngIf="message!=''" class="alert">
+    <span class="closebtn" (click)="removeMessage()">&times;</span>
+    {{message}}
+</div>
+<div id="form-container">
+  <form [formGroup]="updateMatchDTO" (ngSubmit)="onSubmit()">
+
+    <label>Which match do you want to update?
+        <select required formControlName="matchControl" [ngStyle]="{'border-color':updateMatchDTO.controls.matchControl?.dirty&&
+        (updateMatchDTO.controls.matchControl?.errors?.required||updateMatchDTO.controls.matchControl?.errors?.inMatches)?
+        'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+            <option disabled value=undefined> Match to be updated </option>
+            <option *ngFor="let m of matches" [value]="m"> Date: {{m.date}}, missing players: {{m.missingPlayers}}, 
+                payed: {{m.payed}}  </option>
+        </select>
+        <p *ngIf="updateMatchDTO.controls.matchControl?.dirty&&updateMatchDTO.controls.matchControl?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+        <p *ngIf="updateMatchDTO.controls.matchControl?.dirty&&updateMatchDTO.controls.matchControl?.errors?.inMatches" class="error">
+            Invalid choice 
+        </p>
+    </label>
+    <div *ngIf="updateMatchDTO.valid">
+        <input type="submit" value="Submit"> 
+    </div>
+
+  </form>
+</div>

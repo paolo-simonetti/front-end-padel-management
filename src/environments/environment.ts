@@ -5,13 +5,21 @@
 export const environment = {
   production: false,
   apiDocsBaseUrl:'api',
+  
   superAdminApi:'/superadmin',
+  
   adminApi:'/admin',
+
   playerApi:'/player',
+  callForActionPackage:'/call-for-action',
+  memberPackage:'/member',
+  padelMatchPackage:'/padel-match',
+  
   guestApi:'/guest',
   courtsPackage:'/courts',
   joinProposalPackage:'/joinproposals',
   noticePackage:'/notices',
+  
   corsApi:'',
   authorizationApi:'/authorization'
 };

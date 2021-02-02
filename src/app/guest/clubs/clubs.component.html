@@ -11,7 +11,7 @@
     <tbody *ngFor="let club of clubs"> 
         <td> {{club.name}} </td>
         <td> {{club.city}} </td>
-        <td> {{club.logo}} </td>
-        <td><button [routerLink]="['guest/join-club',club.id]" class="buttonClub" > Ask to join </button></td>
+        <td class="img-space"> <img [src]="club.logo" /> </td>
+        <td><button [routerLink]="['/guest/join-club',club.id]" class="buttonClub" > Ask to join </button></td>
     </tbody>
 </table>

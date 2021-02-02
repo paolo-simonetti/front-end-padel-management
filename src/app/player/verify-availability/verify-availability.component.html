@@ -1,0 +1,91 @@
+<div *ngIf="message!=''" class="alert">
+    <span class="closebtn" (click)="removeMessage()">&times;</span>
+    {{message}}
+</div>
+<div id="form-container">
+  <form [formGroup]="verifyAvailabilityDTO" (ngSubmit)="onSubmit()">
+
+    <label>Date:
+        <input type="date" formControlName="date" 
+            [ngStyle]="{'border-color':verifyAvailabilityDTO.controls.date?.dirty&&
+            (verifyAvailabilityDTO.controls.date?.errors?.required||verifyAvailabilityDTO.controls.date?.errors?.dateMustBeFutureOrPresent)?
+            'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+        <p *ngIf="verifyAvailabilityDTO.controls.date?.dirty&&verifyAvailabilityDTO.controls.date?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+        <p *ngIf="verifyAvailabilityDTO.controls.date?.dirty&&verifyAvailabilityDTO.controls.date?.errors?.dateMustBeFutureOrPresent" class="error">
+            The date must be today or in the future
+        </p>
+    </label>
+    <label>Hour:
+        <select required formControlName="hour" [ngStyle]="{'border-color':verifyAvailabilityDTO.controls.hour?.dirty&&
+        (verifyAvailabilityDTO.controls.hour?.errors?.required||verifyAvailabilityDTO.controls.hour?.errors?.inHours)?
+        'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+            <option disabled value=undefined> Select the initial hour </option>
+            <option *ngFor="let hour of hours" [ngValue]=hour> {{hour}} </option>
+        </select>
+        <p *ngIf="verifyAvailabilityDTO.controls.hour?.dirty&&verifyAvailabilityDTO.controls.hour?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+        <p *ngIf="verifyAvailabilityDTO.controls.hour?.dirty&&verifyAvailabilityDTO.controls.hour?.errors?.inHours" class="error">
+            Invalid hour
+        </p>
+    </label>
+    <label>Minute:
+        <select required formControlName="minute" [ngStyle]="{'border-color':verifyAvailabilityDTO.controls.minute?.dirty&&
+        (verifyAvailabilityDTO.controls.minute?.errors?.required||verifyAvailabilityDTO.controls.minute?.errors?.inMinutes)?
+        'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+            <option disabled value=undefined> Select the initial minute </option>
+            <option *ngFor="let minute of minutes" [ngValue]=minute> {{minute}} </option>
+        </select>
+        <p *ngIf="verifyAvailabilityDTO.controls.minute?.dirty&&verifyAvailabilityDTO.controls.minute?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+        <p *ngIf="verifyAvailabilityDTO.controls.minute?.dirty&&verifyAvailabilityDTO.controls.minute?.errors?.inMinutes" class="error">
+            Invalid minute
+        </p>
+    </label>
+    <label>Duration hour:
+        <select required formControlName="durationHour" [ngStyle]="{'border-color':verifyAvailabilityDTO.controls.durationHour?.dirty&&
+        (verifyAvailabilityDTO.controls.durationHour?.errors?.required||verifyAvailabilityDTO.controls.durationHour?.errors?.inDurationHours)?
+        'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+            <option disabled value=undefined> Select the duration hour </option>
+            <option *ngFor="let dhour of durationHours" [ngValue]=dhour> {{dhour}} </option>
+        </select>
+        <p *ngIf="verifyAvailabilityDTO.controls.durationHour?.dirty&&verifyAvailabilityDTO.controls.durationHour?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+        <p *ngIf="verifyAvailabilityDTO.controls.durationHour?.dirty&&verifyAvailabilityDTO.controls.durationHour?.errors?.inDurationHours" class="error">
+            Invalid duration hour
+        </p>
+    </label>
+
+    <label>Duration minute:
+        <select required formControlName="durationMinute" [ngStyle]="{'border-color':verifyAvailabilityDTO.controls.durationMinute?.dirty&&
+        (verifyAvailabilityDTO.controls.durationMinute?.errors?.required||verifyAvailabilityDTO.controls.durationMinute?.errors?.inMinutes)?
+        'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+            <option disabled value=undefined> Select the duration minute </option>
+            <option *ngFor="let dminute of durationMinutes" [ngValue]=dminute> {{dminute}} </option>
+        </select>
+        <p *ngIf="verifyAvailabilityDTO.controls.durationMinute?.dirty&&verifyAvailabilityDTO.controls.durationMinute?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+        <p *ngIf="verifyAvailabilityDTO.controls.durationMinute?.dirty&&verifyAvailabilityDTO.controls.durationMinute?.errors?.inMinutes" class="error">
+            Invalid duration minute
+        </p>
+    </label>
+    <p *ngIf="verifyAvailabilityDTO.errors?.minimumDuration" class="error">
+        A match must be at least 1h30 long
+    </p>
+    <p *ngIf="verifyAvailabilityDTO.errors?.maximumDuration" class="error">
+        A match must be over before the club is closed
+    </p>
+    <p *ngIf="verifyAvailabilityDTO.errors?.isTheClubOpen" class="error">
+        A match cannot start before the club is open
+    </p>
+    <div *ngIf="verifyAvailabilityDTO.valid">
+        <input type="submit" value="Submit"> 
+    </div>
+
+  </form>
+</div>
