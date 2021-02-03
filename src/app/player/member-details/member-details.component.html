@@ -1,0 +1,114 @@
+<div *ngIf="message!=''" class="alert">
+    <span class="closebtn" (click)="removeMessage()">&times;</span>
+    {{message}}
+</div>
+<div id="form-container">
+  <form [formGroup]="playerDTO" (ngSubmit)="onSubmit()">
+
+    <label>Name:
+        <input type="text" formControlName="name" placeholder="Your name..." 
+            [ngStyle]="{'border-color':playerDTO.controls.name?.dirty&&
+            playerDTO.controls.name?.errors?.required?
+            'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+        <p *ngIf="playerDTO.controls.name?.dirty&&playerDTO.controls.name?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+    </label>
+    <label>Surname:
+        <input type="text" formControlName="surname" placeholder="Your surname..." 
+            [ngStyle]="{'border-color':playerDTO.controls.surname?.dirty&&
+            playerDTO.controls.surname?.errors?.required?
+            'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+        <p *ngIf="playerDTO.controls.surname?.dirty&&playerDTO.controls.surname?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+    </label>
+    <label>Date of birth:
+        <input type="date" formControlName="date" placeholder="Your date of birth..." 
+            [ngStyle]="{'border-color':playerDTO.controls.dateOfBirth?.dirty&&
+            playerDTO.controls.dateOfBirth?.errors?.required?
+            'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+        <p *ngIf="playerDTO.controls.dateOfBirth?.dirty&&playerDTO.controls.dateOfBirth?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+    </label>
+    <label>Mail address:
+        <input type="text" formControlName="mailAddress" placeholder="Your mail address..." 
+            [ngStyle]="{'border-color':playerDTO.controls.mailAddress?.dirty&&
+            playerDTO.controls.mailAddress?.errors?.required?
+            'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+        <p *ngIf="playerDTO.controls.mailAddress?.dirty&&playerDTO.controls.mailAddress?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+    </label>
+
+    <label>Username:
+        <input type="text" formControlName="username" placeholder="Your username..." 
+            [ngStyle]="{'border-color':playerDTO.controls.username?.dirty&&
+            playerDTO.controls.username?.errors?.required?
+            'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+        <p *ngIf="playerDTO.controls.username?.dirty&&playerDTO.controls.username?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+    </label>
+
+    <label>Password:
+        <input type="password" formControlName="password" placeholder="Your password..." 
+            [ngStyle]="{'border-color':playerDTO.controls.password?.dirty&&
+            playerDTO.controls.password?.errors?.required?
+            'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+        <p *ngIf="playerDTO.controls.password?.dirty&&playerDTO.controls.password?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+    </label>
+
+    <label>Mobile:
+        <input type="text" formControlName="mobile" placeholder="Your mobile..." 
+            [ngStyle]="{'border-color':playerDTO.controls.mobile?.dirty&&
+            playerDTO.controls.mobile?.errors?.required?
+            'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+        <p *ngIf="playerDTO.controls.mobile?.dirty&&playerDTO.controls.mobile?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+    </label>
+
+
+    <label>Profile picture:
+        <div class="custom-file fileInputProfileWrap">
+            <input type="file" (change)="fileChangeEvent($event)" formControlName="proPic" class="fileInputProfile">
+                <div class="img-space">
+
+                    <ng-container *ngIf="isImageSaved; else elseTemplate">
+                        <img [src]="cardImageBase64" />
+                    </ng-container>
+                    <ng-template #elseTemplate> 
+                        <img src="user-placeholder.jpg" alt="Your profile picture" class="img-responsive">
+                    </ng-template>
+
+                </div>
+            </div>
+            <p class="error"> {{imageError}} </p> 
+    </label>level
+
+    <label>Your level
+        <select required formControlName="level" [ngStyle]="{'border-color':playerDTO.controls.level?.dirty&&
+        (playerDTO.controls.level?.errors?.required||playerDTO.controls.level?.errors?.inPlayers)?
+        'rgb(238, 8, 8)':'rgb(59, 57, 57)'}">
+            <option disabled value=undefined> Level </option>
+            <option *ngFor="let l of levels" [ngValue]="l"> {{l}} </option>
+        </select>
+        <p *ngIf="playerDTO.controls.level?.dirty&&playerDTO.controls.level?.errors?.required" class="error">
+            Mandatory field
+        </p>  
+        <p *ngIf="playerDTO.controls.level?.dirty&&playerDTO.controls.level?.errors?.inPlayers" class="error">
+            Invalid level
+        </p>
+    </label>
+
+  
+    <div *ngIf="playerDTO.valid">
+        <input type="submit" value="Submit"> 
+    </div>
+
+  </form>
+</div>

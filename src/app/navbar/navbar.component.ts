@@ -10,8 +10,9 @@ import { AuthService } from '../services/auth.service';
 export class NavbarComponent implements OnInit {
   homePath:string='/'+localStorage.getItem('role')+'/home';
   logout():void {
-    this.authService.logout();
-    this.router.navigateByUrl('/login',{state:{data:"Bye bye!"}})
+    this.authService.logout().subscribe((result)=>{
+      this.router.navigateByUrl('/login',{state:{data:result.message}})
+    })
   }
 
   constructor(private authService:AuthService, private router:Router) { }

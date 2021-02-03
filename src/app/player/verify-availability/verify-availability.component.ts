@@ -3,7 +3,6 @@ import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { CLOSE, DURATION_HOURS, HOURS, MINUTES, OPEN } from 'src/app/classes/Club';
-import { AuthService } from 'src/app/services/auth.service';
 import { CourtService } from 'src/app/services/court.service';
 
 @Component({
@@ -23,6 +22,18 @@ export class VerifyAvailabilityComponent implements OnInit {
     const millisecondsInput:number=Date.parse(control!.value.toString());
     const millisecondsToday:number=Date.parse(moment().format("YYYY-MM-DD"))
     return (millisecondsInput!==undefined&&millisecondsToday>=millisecondsInput?{dateMustBePast:true}:null)
+  }
+
+  moreThanAnHourAndHalfMissing:ValidatorFn=control=> {
+    if (control.value!=null&&control.value!=undefined&&control!.get('date')!==null
+      &&control!.get('hour')!==null && control!.get('minute')!==null) {
+      let millisecondsInput:number=Date.parse(control!.get('date').value+"T"+
+        control!.get('hour').value+":"+control!.get('minute').value+":00");
+      const millisecondsToday:number=Date.now();
+      return (millisecondsInput<millisecondsToday+90*60000?{moreThanAnHourAndHalfMissing:true}:null); 
+    } else {
+      return null;
+    }
   }
 
   inHours:ValidatorFn=control=>{
@@ -81,7 +92,7 @@ export class VerifyAvailabilityComponent implements OnInit {
     minute:new FormControl(0,[Validators.required,this.inMinutes]),
     durationHour:new FormControl(2,[Validators.required,this.inDurationHours]),
     durationMinute:new FormControl(0,[Validators.required,this.inMinutes])  
-  }, [this.minimumDuration, this.maximumDuration, this.isTheClubOpen])
+  }, [this.minimumDuration, this.maximumDuration, this.isTheClubOpen, this.moreThanAnHourAndHalfMissing])
   
   removeMessage():void {
     this.message='';

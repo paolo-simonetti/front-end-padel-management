@@ -99,6 +99,5 @@ export class NewClubProposalComponent implements OnInit {
 
   constructor(private router:Router, private newClubProposalService:NewClubProposalService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

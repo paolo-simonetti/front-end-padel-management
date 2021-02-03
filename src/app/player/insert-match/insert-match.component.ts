@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { InsertMatchDTO } from 'src/app/messages/InsertMatchDTO';
-import { CourtService } from 'src/app/services/court.service';
 import { MatchService } from 'src/app/services/match.service';
 
 @Component({

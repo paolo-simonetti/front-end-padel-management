@@ -1,0 +1,19 @@
+<div *ngIf="!!message" class="alert">
+    <span class="closebtn" (click)="removeMessage()">&times;</span>
+    {{message}}
+</div>
+<div *ngIf="notices.length===0"><p class="spin"></p></div>
+<div id="notices-container">
+    <table id="notices">
+        <thead>
+            <tr> 
+                <th>Message</th>
+                <th>Creation date</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let notice of notices"> 
+            <td> {{notice.message}} </td>
+            <td> {{notice.creationDate}} </td>
+        </tbody>
+    </table>
+</div>

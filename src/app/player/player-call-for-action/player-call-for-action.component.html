@@ -1,0 +1,23 @@
+<div *ngIf="!!message" class="alert">
+    <span class="closebtn" (click)="removeMessage()">&times;</span>
+    {{message}}
+</div>
+<div *ngIf="matches.length===0"><p class="spin"></p></div>
+<table id="matches">
+    <thead>
+        <tr> 
+            <th>Date</th>
+            <th>Missing players</th>
+            <th>Hour</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let match of matches"> 
+        <td> {{match.date}} </td>
+        <td> {{match.missingPlayers}}</td>
+        <td> {{match.hour}}:{{match.minute}}-{{match.hourEnd}}:{{match.minuteEnd}}</td>
+        <td>
+            <a [routerLink]="['/player/update-missing-players',match.id]"> Update missing players </a>
+        </td>
+    </tbody>
+</table>

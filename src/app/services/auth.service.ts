@@ -47,10 +47,10 @@ export class AuthService {
     localStorage.setItem('role', role);
   }          
   
-  logout() : void {
-    this.httpClient.get<any>(environment.apiDocsBaseUrl+environment.authorizationApi+'/logout');
+  logout() : Observable<any> {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
+    return this.httpClient.get<any>(environment.apiDocsBaseUrl+environment.authorizationApi+'/logout');
   }
 
   constructor(private httpClient:HttpClient) { }

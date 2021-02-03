@@ -44,5 +44,18 @@ export class MatchService {
     })
   }
 
+  joinMatch(id:string):Observable<any> {
+    return this.httpClient.post(environment.apiDocsBaseUrl+environment.playerApi+environment.padelMatchPackage+'/join', {
+      "matchId":id
+    })
+  }
+
+  updateMissingPlayers(matchId:string,missingPlayers:number):Observable<any> {
+    return this.httpClient.post(environment.apiDocsBaseUrl+environment.playerApi+environment.padelMatchPackage+'/updateMissingPlayers', {
+      "matchId":matchId,
+      "misssingPlayers":missingPlayers
+    })
+  }
+
   constructor(private httpClient:HttpClient) { }
 }
